@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intern-Server-2026 コマンド一覧（コピペ用）</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f7f8fa;
+  --panel: #ffffff;
+  --border: #e0e3e8;
+  --text: #1a1f26;
+  --muted: #6b7684;
+  --code-bg: #1e2530;
+  --code-text: #e8ecf1;
+  --primary: #1e6feb;
+  --primary-hover: #1558c7;
+  --success: #2e9c5b;
+  --tag-bg: #eef2f6;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  margin: 0;
+  padding: 2rem 1rem 6rem;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+h1 { margin: 0 0 0.5em; font-size: 1.8em; border-bottom: 3px solid var(--primary); padding-bottom: 0.3em; }
+h3.section { margin: 1.6em 0 0.6em; font-size: 1.05em; color: var(--muted); font-weight: 600; }
+.intro { background: #e8f0fe; border-left: 4px solid var(--primary); padding: 1em 1.2em; margin: 1em 0 2em; border-radius: 0 8px 8px 0; }
+.intro p { margin: 0.4em 0; }
+.intro code { background: #d8e4fb; padding: 1px 6px; border-radius: 3px; font-size: 0.92em; }
+.toc { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 1em 1.5em; margin-bottom: 1em; }
+.toc h2 { border: none; padding: 0; margin: 0 0 0.5em; font-size: 1em; color: var(--muted); }
+.toc ol { margin: 0; padding-left: 1.3em; }
+.toc a { color: var(--primary); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.toc .count { color: var(--muted); font-size: 0.9em; }
+.controls { display: flex; gap: 0.6em; margin-bottom: 2em; flex-wrap: wrap; }
+.controls button { background: var(--panel); border: 1px solid var(--border); color: var(--text); padding: 6px 14px; border-radius: 6px; font-size: 0.9em; cursor: pointer; font-family: inherit; }
+.controls button:hover { background: var(--tag-bg); }
+.chapter { margin-bottom: 0.8em; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.chapter-summary { padding: 0.9em 1.2em; cursor: pointer; display: flex; align-items: center; gap: 0.8em; list-style: none; user-select: none; }
+.chapter-summary::-webkit-details-marker { display: none; }
+.chapter-summary::before { content: "▶"; font-size: 0.75em; color: var(--muted); transition: transform 0.15s; display: inline-block; }
+.chapter[open] > .chapter-summary::before { transform: rotate(90deg); }
+.chapter-summary:hover { background: var(--tag-bg); }
+.chapter-title { font-size: 1.15em; font-weight: 600; flex: 1; }
+.chapter .count { color: var(--muted); font-size: 0.9em; background: var(--tag-bg); padding: 2px 10px; border-radius: 12px; }
+.chapter-body { padding: 0.4em 1.4em 1.4em; border-top: 1px solid var(--border); }
+.empty { color: var(--muted); font-style: italic; }
+.cmd { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 0.8em 1em; margin: 0.8em 0; }
+.cmd-head { display: flex; align-items: center; gap: 0.6em; margin-bottom: 0.5em; flex-wrap: wrap; }
+.cmd-id { font-family: "SF Mono", "Menlo", "Consolas", monospace; font-size: 0.82em; color: var(--muted); background: var(--tag-bg); padding: 2px 8px; border-radius: 4px; }
+.lang-tag { font-size: 0.75em; color: var(--muted); background: var(--tag-bg); padding: 2px 8px; border-radius: 4px; text-transform: lowercase; }
+.cmd-copy { margin-left: auto; background: var(--primary); color: white; border: none; padding: 6px 16px; border-radius: 6px; font-size: 0.9em; cursor: pointer; font-family: inherit; transition: background 0.15s; }
+.cmd-copy:hover { background: var(--primary-hover); }
+.cmd-copy.copied { background: var(--success); }
+.cmd-copy:disabled { opacity: 0.6; cursor: not-allowed; }
+.cmd-body { background: var(--code-bg); color: var(--code-text); padding: 0.85em 1em; border-radius: 6px; font-family: "SF Mono", "Menlo", "Consolas", "Roboto Mono", monospace; font-size: 0.92em; overflow-x: auto; margin: 0; white-space: pre; }
+.cmd-body code { font-family: inherit; }
+.cmd.lang-csharp .cmd-body { background: #2b2036; }
+.cmd.lang-csharp .lang-tag { background: #efe3ff; color: #6d2eb8; }
+footer { margin-top: 4em; padding-top: 1em; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<h1>Intern-Server-2026 コマンド一覧（コピペ用）</h1>
+<div class="intro">
+  <p><strong>このページの使い方</strong></p>
+  <p>PDF ガイドで案内されているコマンドは、このページの <strong>「コピー」</strong> ボタンでクリップボードに入ります。あとはターミナルで貼り付け（<code>Cmd+V</code> / <code>Ctrl+V</code>）して実行してください。</p>
+  <p>各コマンドの <code>#XX-N</code> は「XX 章の N 番目」を意味する識別子です。PDF と同じ章・見出しの位置に並んでいるので、そちらで見つけてください。</p>
+  <p><small>💡 PDF から直接コピーすると環境によっては改行が正しく取れないことがあります。このページからコピーするのが確実です。</small></p>
+</div>
+<nav class="toc"><h2>目次</h2><ol><li><a href="#ch01">01. はじめに</a> <span class="count">(0 個)</span></li>
+<li><a href="#ch02">02. 用語とツールの基礎知識</a> <span class="count">(3 個)</span></li>
+<li><a href="#ch03">03. 環境構築 - Windows</a> <span class="count">(9 個)</span></li>
+<li><a href="#ch04">04. 環境構築 - macOS</a> <span class="count">(14 個)</span></li>
+<li><a href="#ch05">05. 動作確認 (Hello World)</a> <span class="count">(13 個)</span></li>
+<li><a href="#ch06">06. トラブルシューティング</a> <span class="count">(8 個)</span></li></ol></nav><div class="controls"><button type="button" id="expand-all">全部開く</button><button type="button" id="collapse-all">全部畳む</button></div><details class="chapter" id="ch01"><summary class="chapter-summary"><span class="chapter-title">01. はじめに</span><span class="count">0 個</span></summary><div class="chapter-body"><p class="empty">この章にコマンドはありません。</p></div></details>
+<details class="chapter" id="ch02"><summary class="chapter-summary"><span class="chapter-title">02. 用語とツールの基礎知識</span><span class="count">3 個</span></summary><div class="chapter-body"><h3 class="section">ターミナルの見方 › 実際にやってみる（安全なコマンド）</h3><div class="cmd lang-shell" id="02-1"><div class="cmd-head"><span class="cmd-id">#02-1</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>echo hello</code></pre></div><h3 class="section">フォルダ移動（cd） › ホームフォルダに移動</h3><div class="cmd lang-shell" id="02-2"><div class="cmd-head"><span class="cmd-id">#02-2</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>cd ~</code></pre></div><h3 class="section">フォルダ移動（cd） › 特定のフォルダに移動</h3><div class="cmd lang-shell" id="02-3"><div class="cmd-head"><span class="cmd-id">#02-3</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>cd dotnet-test</code></pre></div></div></details>
+<details class="chapter" id="ch03"><summary class="chapter-summary"><span class="chapter-title">03. 環境構築 - Windows</span><span class="count">9 個</span></summary><div class="chapter-body"><h3 class="section">① WSL2 の有効化 › 手順</h3><div class="cmd lang-shell" id="03-1"><div class="cmd-head"><span class="cmd-id">#03-1</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>wsl --install</code></pre></div><h3 class="section">① WSL2 の有効化 › 確認</h3><div class="cmd lang-shell" id="03-2"><div class="cmd-head"><span class="cmd-id">#03-2</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>wsl --status</code></pre></div><h3 class="section">② Docker Desktop のインストール › 確認</h3><div class="cmd lang-shell" id="03-3"><div class="cmd-head"><span class="cmd-id">#03-3</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>docker --version</code></pre></div><div class="cmd lang-shell" id="03-4"><div class="cmd-head"><span class="cmd-id">#03-4</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>docker compose version</code></pre></div><h3 class="section">③ .NET 10 SDK のインストール › 確認</h3><div class="cmd lang-shell" id="03-5"><div class="cmd-head"><span class="cmd-id">#03-5</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>dotnet --version</code></pre></div><h3 class="section">すべて入ったか最終確認</h3><div class="cmd lang-shell" id="03-6"><div class="cmd-head"><span class="cmd-id">#03-6</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>docker --version</code></pre></div><div class="cmd lang-shell" id="03-7"><div class="cmd-head"><span class="cmd-id">#03-7</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>docker compose version</code></pre></div><div class="cmd lang-shell" id="03-8"><div class="cmd-head"><span class="cmd-id">#03-8</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>dotnet --version</code></pre></div><div class="cmd lang-shell" id="03-9"><div class="cmd-head"><span class="cmd-id">#03-9</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>code --version</code></pre></div></div></details>
+<details class="chapter" id="ch04"><summary class="chapter-summary"><span class="chapter-title">04. 環境構築 - macOS</span><span class="count">14 個</span></summary><div class="chapter-body"><h3 class="section">① Docker Desktop のインストール › 確認</h3><div class="cmd lang-shell" id="04-1"><div class="cmd-head"><span class="cmd-id">#04-1</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>docker --version</code></pre></div><div class="cmd lang-shell" id="04-2"><div class="cmd-head"><span class="cmd-id">#04-2</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>docker compose version</code></pre></div><h3 class="section">② .NET 10 SDK のインストール › 手順</h3><div class="cmd lang-shell" id="04-3"><div class="cmd-head"><span class="cmd-id">#04-3</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>curl -sSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh</code></pre></div><div class="cmd lang-shell" id="04-4"><div class="cmd-head"><span class="cmd-id">#04-4</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>chmod +x /tmp/dotnet-install.sh</code></pre></div><div class="cmd lang-shell" id="04-5"><div class="cmd-head"><span class="cmd-id">#04-5</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>/tmp/dotnet-install.sh --channel 10.0 --install-dir ~/.dotnet</code></pre></div><h3 class="section">② .NET 10 SDK のインストール › PATH を通す</h3><div class="cmd lang-shell" id="04-6"><div class="cmd-head"><span class="cmd-id">#04-6</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>echo $SHELL</code></pre></div><div class="cmd lang-shell" id="04-7"><div class="cmd-head"><span class="cmd-id">#04-7</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>echo &#x27;export PATH=&quot;$HOME/.dotnet:$PATH&quot;&#x27; &gt;&gt; ~/.zshrc</code></pre></div><div class="cmd lang-shell" id="04-8"><div class="cmd-head"><span class="cmd-id">#04-8</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>echo &#x27;export DOTNET_ROOT=&quot;$HOME/.dotnet&quot;&#x27; &gt;&gt; ~/.zshrc</code></pre></div><div class="cmd lang-shell" id="04-9"><div class="cmd-head"><span class="cmd-id">#04-9</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>source ~/.zshrc</code></pre></div><h3 class="section">② .NET 10 SDK のインストール › macOS のセキュリティ許可（重要）</h3><div class="cmd lang-shell" id="04-10"><div class="cmd-head"><span class="cmd-id">#04-10</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>dotnet --version</code></pre></div><h3 class="section">② .NET 10 SDK のインストール › 確認</h3><div class="cmd lang-shell" id="04-11"><div class="cmd-head"><span class="cmd-id">#04-11</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>dotnet --version</code></pre></div><h3 class="section">すべて入ったか最終確認</h3><div class="cmd lang-shell" id="04-12"><div class="cmd-head"><span class="cmd-id">#04-12</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>docker --version</code></pre></div><div class="cmd lang-shell" id="04-13"><div class="cmd-head"><span class="cmd-id">#04-13</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>docker compose version</code></pre></div><div class="cmd lang-shell" id="04-14"><div class="cmd-head"><span class="cmd-id">#04-14</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>dotnet --version</code></pre></div></div></details>
+<details class="chapter" id="ch05"><summary class="chapter-summary"><span class="chapter-title">05. 動作確認 (Hello World)</span><span class="count">13 個</span></summary><div class="chapter-body"><h3 class="section">① Docker の動作確認 › 1-2. hello-world コンテナを実行</h3><div class="cmd lang-shell" id="05-1"><div class="cmd-head"><span class="cmd-id">#05-1</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>docker run hello-world</code></pre></div><h3 class="section">② .NET で Hello World API を作る › 手順 › 1. 作業フォルダに移動</h3><div class="cmd lang-shell" id="05-2"><div class="cmd-head"><span class="cmd-id">#05-2</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>cd $HOME</code></pre></div><div class="cmd lang-shell" id="05-3"><div class="cmd-head"><span class="cmd-id">#05-3</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>mkdir dotnet-test -Force</code></pre></div><div class="cmd lang-shell" id="05-4"><div class="cmd-head"><span class="cmd-id">#05-4</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>cd dotnet-test</code></pre></div><div class="cmd lang-shell" id="05-5"><div class="cmd-head"><span class="cmd-id">#05-5</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>cd ~</code></pre></div><div class="cmd lang-shell" id="05-6"><div class="cmd-head"><span class="cmd-id">#05-6</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>mkdir -p dotnet-test</code></pre></div><div class="cmd lang-shell" id="05-7"><div class="cmd-head"><span class="cmd-id">#05-7</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>cd dotnet-test</code></pre></div><h3 class="section">② .NET で Hello World API を作る › 手順 › 2. プロジェクト雛形を作る</h3><div class="cmd lang-shell" id="05-8"><div class="cmd-head"><span class="cmd-id">#05-8</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>dotnet new web -n HelloIntern</code></pre></div><div class="cmd lang-shell" id="05-9"><div class="cmd-head"><span class="cmd-id">#05-9</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>cd HelloIntern</code></pre></div><h3 class="section">② .NET で Hello World API を作る › 手順 › 3. 起動する</h3><div class="cmd lang-shell" id="05-10"><div class="cmd-head"><span class="cmd-id">#05-10</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>dotnet run</code></pre></div><h3 class="section">③ VSCode でコードを開いて改造してみる › 3-2. コードを確認する</h3><div class="cmd lang-csharp" id="05-11"><div class="cmd-head"><span class="cmd-id">#05-11</span><span class="lang-tag">csharp</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet(&quot;/&quot;, () =&gt; &quot;Hello World!&quot;);
+
+app.Run();</code></pre></div><h3 class="section">③ VSCode でコードを開いて改造してみる › 3-3. コードを書き換えてみる</h3><div class="cmd lang-csharp" id="05-12"><div class="cmd-head"><span class="cmd-id">#05-12</span><span class="lang-tag">csharp</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>app.MapGet(&quot;/&quot;, () =&gt; &quot;Hello, Alice!&quot;);</code></pre></div><h3 class="section">③ VSCode でコードを開いて改造してみる › 3-5. サーバーを再起動する</h3><div class="cmd lang-shell" id="05-13"><div class="cmd-head"><span class="cmd-id">#05-13</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>dotnet run</code></pre></div></div></details>
+<details class="chapter" id="ch06"><summary class="chapter-summary"><span class="chapter-title">06. トラブルシューティング</span><span class="count">8 個</span></summary><div class="chapter-body"><h3 class="section">Docker関連 › Docker Desktop が起動しない / クジラアイコンが緑にならない › Windowsの場合</h3><div class="cmd lang-shell" id="06-1"><div class="cmd-head"><span class="cmd-id">#06-1</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>wsl --status</code></pre></div><div class="cmd lang-shell" id="06-2"><div class="cmd-head"><span class="cmd-id">#06-2</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>wsl --set-default-version 2</code></pre></div><h3 class="section">.NET / dotnetコマンド関連 › `dotnet` コマンドが見つからない（`command not found` / `&#x27;dotnet&#x27; は認識されていません`）</h3><div class="cmd lang-shell" id="06-3"><div class="cmd-head"><span class="cmd-id">#06-3</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>cat ~/.zshrc | grep dotnet</code></pre></div><h3 class="section">.NET / dotnetコマンド関連 › `dotnet run` でエラーが多発する / 起動しない</h3><div class="cmd lang-shell" id="06-4"><div class="cmd-head"><span class="cmd-id">#06-4</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>dotnet clean</code></pre></div><div class="cmd lang-shell" id="06-5"><div class="cmd-head"><span class="cmd-id">#06-5</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>dotnet run</code></pre></div><h3 class="section">Windows特有 › PowerShell スクリプト実行時に「このシステムではスクリプトの実行が無効になっています」</h3><div class="cmd lang-shell" id="06-6"><div class="cmd-head"><span class="cmd-id">#06-6</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code></pre></div><h3 class="section">ネットワーク・ポート › `dotnet run` が「port is already in use / アドレスは既に使用されています」で起動失敗</h3><div class="cmd lang-shell" id="06-7"><div class="cmd-head"><span class="cmd-id">#06-7</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>netstat -ano | findstr :5000</code></pre></div><div class="cmd lang-shell" id="06-8"><div class="cmd-head"><span class="cmd-id">#06-8</span><span class="lang-tag">shell</span><button class="cmd-copy" type="button">コピー</button></div><pre class="cmd-body"><code>lsof -i :5000</code></pre></div></div></details><footer>
+  自動生成: <code>docs/student/_export/generate-commands-html.py</code>
+</footer>
+<script>
+document.querySelectorAll(".cmd-copy").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var codeEl = btn.closest(".cmd").querySelector(".cmd-body code");
+    var text = codeEl.innerText.replace(/\n$/, "");
+    navigator.clipboard.writeText(text).then(function () {
+      var original = btn.textContent;
+      btn.textContent = "✓ コピー完了";
+      btn.classList.add("copied");
+      btn.disabled = true;
+      setTimeout(function () {
+        btn.textContent = original;
+        btn.classList.remove("copied");
+        btn.disabled = false;
+      }, 1400);
+    }).catch(function () {
+      btn.textContent = "コピー失敗";
+    });
+  });
+});
+document.getElementById("expand-all").addEventListener("click", function () {
+  document.querySelectorAll("details.chapter").forEach(function (d) { d.open = true; });
+});
+document.getElementById("collapse-all").addEventListener("click", function () {
+  document.querySelectorAll("details.chapter").forEach(function (d) { d.open = false; });
+});
+</script>
+</body>
+</html>

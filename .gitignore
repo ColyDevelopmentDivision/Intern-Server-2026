@@ -1,0 +1,48 @@
+## .NET build outputs
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+
+## IDE
+.vs/
+.idea/
+*.swp
+
+## VSCode: launch.json / tasks.json は共有したいのでコミット対象。ローカル固有のsettings.jsonのみ除外
+.vscode/settings.json
+
+## appsettings のローカル上書き（接続文字列などのローカル値を入れる想定）
+appsettings.Local.json
+appsettings.*.Local.json
+
+## OS
+.DS_Store
+Thumbs.db
+
+## logs / temp
+*.log
+*.tmp
+
+## MySQL bind mount（名前付きvolumeを使うので通常出ないが念のため）
+mysql-data/
+
+## 開発中の作業メモ（社内用・push前に削除する運用だが、誤commit防止で除外）
+TODO.md
+
+## スタッフ用の解答ドキュメント（学生が事前に見ないよう除外）
+docs/day/answers/
+
+## スタッフ用の運用ガイド（学生が事前に見ないよう除外・Google Drive等で共有）
+docs/staff/
+
+## 学生向けドキュメントの PDF 出力（ソースから再生成可能なので除外）
+docs/student/_export/*.pdf
+docs/student/_export/images
+
+## 社内向けレビューメモ（作業経緯の記録、外部公開不可）
+変更概要-社内用.md
+
+## Claude Code のセッション個別設定（ユーザー固有・環境依存パス含む）
+.claude/settings.local.json

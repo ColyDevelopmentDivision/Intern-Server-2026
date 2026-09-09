@@ -1,0 +1,34 @@
+@InternApi_HostAddress = http://localhost:5109
+
+### 10連ガチャ
+POST {{InternApi_HostAddress}}/api/gacha/draw
+Content-Type: application/json
+
+{ "gachaId": 1 }
+
+### ユーザー作成
+POST {{InternApi_HostAddress}}/api/user/create
+Content-Type: application/json
+
+{ "name": "Dave" }
+
+### ログイン (ダミー認証。name 一致だけで userId を返す)
+POST {{InternApi_HostAddress}}/api/user/login
+Content-Type: application/json
+
+{ "name": "Alice" }
+
+### Debug: 所持品一覧
+GET {{InternApi_HostAddress}}/api/debug/inventory?userId=1
+
+### Debug: 所持数チェック
+GET {{InternApi_HostAddress}}/api/debug/item-has-enough?userId=1&itemId=1001&requiredCount=3000
+
+### Debug: アイテム付与
+POST {{InternApi_HostAddress}}/api/debug/item-give?userId=1&itemId=1001&grantCount=3000
+
+### Debug: アイテム消費
+POST {{InternApi_HostAddress}}/api/debug/item-consume?userId=1&itemId=1001&consumeCount=300
+
+### Debug: 単発抽選
+POST {{InternApi_HostAddress}}/api/debug/gacha-draw-one?gachaId=1
