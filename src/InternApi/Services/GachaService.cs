@@ -1,5 +1,6 @@
 using Dapper;
 using InternApi.Models;
+using Microsoft.Extensions.ObjectPool;
 using MySqlConnector;
 
 namespace InternApi.Services;
@@ -72,7 +73,18 @@ public class GachaService
 
         // TODO(メイン課題1): 下の1行を、重み付き抽選ロジックに書き換えよう。
         // 現状は「プール先頭固定」= 何度引いても同じアイテムしか出ない状態。
-        return gachaDetailMasters[0].ItemId;
+        
+        int totalWeight = pool.Sum(x >= x.Weight);
+        int randomNum = new Random().Next(0, totalWeight);
+        int currentWeight = 0;
+        foreach (var item in pool)
+    {
+        currentWeight += item.Weight;
+        if (randomNum < currentWeight)
+        {
+            return item.ItemId;
+        }
+
     }
 
     /// <summary>
