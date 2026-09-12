@@ -72,7 +72,26 @@ public class GachaService
 
         // TODO(メイン課題1): 下の1行を、重み付き抽選ロジックに書き換えよう。
         // 現状は「プール先頭固定」= 何度引いても同じアイテムしか出ない状態。
-        return gachaDetailMasters[0].ItemId;
+        //1回単発の重み付き抽選
+        // weight は相対比率のため、まず全アイテムの weight 合計を計算
+        int totalWeight = gachaDetailMasters.Sum(x => x.Weight);
+        if (totalWeight <= 0)
+            throw new InvalidOperationException($"gacha_id={gachaId} の合計 weight が不正です。");
+         
+            // 0 以上 totalWeight 未満の乱数を生成
+            int randomValue = Random.Shared.Next(totalWeight);
+
+            // 先頭から weight を差し引いていき、0 未満になった要素を当選とする
+            foreach (var item in gachaDetailMasters)
+            {
+                randomValue -= item.Weight;
+                if (randomValue < 0)
+                {
+                    return item.ItemId;
+                }
+            }
+
+        return gachaDetailMasters[^1].ItemId;
     }
 
     /// <summary>
@@ -81,13 +100,35 @@ public class GachaService
     /// <param name="gachaId">対象ガチャ id</param>
     /// <param name="count">抽選回数</param>
     /// <returns>抽選結果の item_id リスト (count 個)</returns>
+    
     public async Task<List<int>> DrawManyAsync(int gachaId, int count)
     {
+        // DBへのアクセスと totalWeight の計算をループの前に1度だけ実行
+        var gachaDetailMasters = await GetPoolAsync(gachaId);
+        if (gachaDetailMasters.Count == 0)
+            throw new InvalidOperationException($"gacha_id={gachaId} のプールが空。");
+
+        int totalWeight = gachaDetailMasters.Sum(x => x.Weight);
+        if (totalWeight <= 0)
+            throw new InvalidOperationException($"gacha_id={gachaId} の合計 weight が不正です。");
+        
         var itemIds = new List<int>(count);
         for (int i = 0; i < count; i++)
         {
             var itemId = await DrawOneAsync(gachaId);
             itemIds.Add(itemId);
+            // ループ内ではメモリ上のデータを使って乱数判定のみを高速に行う
+            int randomValue = Random.Shared.Next(totalWeight);
+            foreach (var item in gachaDetailMasters)
+            {
+                randomValue -= item.Weight;
+                if (randomValue < 0)
+                {
+                    itemIds.Add(item.ItemId);
+                    break;
+                }
+            }
+        
         }
         return itemIds;
     }
