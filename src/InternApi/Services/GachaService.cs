@@ -70,9 +70,21 @@ public class GachaService
         if (gachaDetailMasters.Count == 0)
             throw new InvalidOperationException($"gacha_id={gachaId} のプールが空。");
 
-        // TODO(メイン課題1): 下の1行を、重み付き抽選ロジックに書き換えよう。
-        // 現状は「プール先頭固定」= 何度引いても同じアイテムしか出ない状態。
-        return gachaDetailMasters[0].ItemId;
+        var totalWeight = gachaDetailMasters.Sum(gachaDetailMaster => gachaDetailMaster.Weight);
+        if (totalWeight <= 0)
+            throw new InvalidOperationException($"gacha_id={gachaId} の weight 合計が 0 以下です。");
+
+        var randomNum = Random.Shared.Next(0, totalWeight);
+        var accumulatedWeight = 0;
+
+        foreach (var gachaDetailMaster in gachaDetailMasters)
+        {
+            accumulatedWeight += gachaDetailMaster.Weight;
+            if (randomNum < accumulatedWeight)
+                return gachaDetailMaster.ItemId;
+        }
+
+        throw new InvalidOperationException($"gacha_id={gachaId} の抽選に失敗しました。");
     }
 
     /// <summary>
