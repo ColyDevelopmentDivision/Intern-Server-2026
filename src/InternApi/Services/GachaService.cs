@@ -65,15 +65,30 @@ public class GachaService
     /// <returns>選ばれたアイテムの item_id</returns>
     /// <exception cref="InvalidOperationException">排出プールが空</exception>
     public async Task<int> DrawOneAsync(int gachaId)
-    {
-        var gachaDetailMasters = await GetPoolAsync(gachaId);
-        if (gachaDetailMasters.Count == 0)
-            throw new InvalidOperationException($"gacha_id={gachaId} のプールが空。");
+{
+    var gachaDetailMasters = await GetPoolAsync(gachaId);
+    if (gachaDetailMasters.Count == 0)
+        throw new InvalidOperationException($"gacha_id={gachaId} のプールが空。");
 
-        // TODO(メイン課題1): 下の1行を、重み付き抽選ロジックに書き換えよう。
-        // 現状は「プール先頭固定」= 何度引いても同じアイテムしか出ない状態。
-        return gachaDetailMasters[0].ItemId;
+    // 1. 全アイテムの weight の合計値を動的に計算する (LINQ の Sum)
+    int totalWeight = gachaDetailMasters.Sum(x => x.Weight);
+
+    // 2. 0 以上 totalWeight 未満の乱数を生成する
+    int randomNum = Random.Shared.Next(0, totalWeight);
+
+    // 3. ループで重みを加算しながら判定する
+    int currentWeight = 0;
+    foreach (var item in gachaDetailMasters)
+    {
+        currentWeight += item.Weight;
+        if (randomNum < currentWeight)
+        {
+            return item.ItemId;
+        }
     }
+
+    return gachaDetailMasters.Last().ItemId;
+}
 
     /// <summary>
     /// DrawOneAsync を count 回呼び出して item_id のリストを返す。10連ガチャ用。
