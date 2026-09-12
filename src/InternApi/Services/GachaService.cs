@@ -10,7 +10,7 @@ namespace InternApi.Services;
 public class GachaService
 {
     private readonly IConfiguration _configuration;
-    private readonly Random _rng = new Random();
+
     public GachaService(IConfiguration configuration)
     {
         _configuration = configuration;
@@ -72,29 +72,7 @@ public class GachaService
 
         // TODO(メイン課題1): 下の1行を、重み付き抽選ロジックに書き換えよう。
         // 現状は「プール先頭固定」= 何度引いても同じアイテムしか出ない状態。
-
-         // weight の合計を計算
-        int totalWeight = gachaDetailMasters.Sum(x => x.Weight);
-
-        // 0以上、totalWeight未満の乱数を生成
-        int randomNum = _rng.Next(0, totalWeight);
-
-        // 先頭からweightを足していき、
-        // randomNumがその範囲に入ったアイテムを当選とする
-        int accumulatedWeight = 0;
-
-        foreach (var item in gachaDetailMasters)
-        {
-            accumulatedWeight += item.Weight;
-
-            if (randomNum < accumulatedWeight)
-            {
-                return item.ItemId;
-            }
-        }
-
-        // 通常ここには到達しない
-        throw new InvalidOperationException("ガチャ抽選に失敗しました。");
+        return gachaDetailMasters[0].ItemId;
     }
 
     /// <summary>
