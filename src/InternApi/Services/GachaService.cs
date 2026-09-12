@@ -72,6 +72,13 @@ public class GachaService
 
         // TODO(メイン課題1): 下の1行を、重み付き抽選ロジックに書き換えよう。
         // 現状は「プール先頭固定」= 何度引いても同じアイテムしか出ない状態。
+        
+         //重みの合計を計算
+        int totalWeight = pool.Sum(x => x.Weight);
+
+        
+        
+        
         return gachaDetailMasters[0].ItemId;
     }
 
