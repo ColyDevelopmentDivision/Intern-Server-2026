@@ -73,11 +73,29 @@ public class GachaService
         // TODO(メイン課題1): 下の1行を、重み付き抽選ロジックに書き換えよう。
         // 現状は「プール先頭固定」= 何度引いても同じアイテムしか出ない状態。
 
-        int p = _rng.Next(1, 101);
+        int p = _rng.Next(1, 101);  //ランダムで1-100の数字出したい
         int high = 0;
-        if (p == 1) {high = 2001};
-        else if (p == 2) {high = 2002};
-        else if (p =< 10 && p >= 3) {high = 2002};
+        if (p == 1) {
+             high = 0;
+            }
+        else if (p == 2){
+             high = 1;
+            }
+        else if (p > 2 && p =< 10) {
+            high = 2;
+            }
+        else if (p > 10 && p =< 20) {
+            high = 3;
+            }
+        else if (p > 20 && p =< 50) {
+            high = 4;
+            }
+        else if (p > 50 && p =< 75) {
+            high = 5;
+            }
+        else if (p > 75 && p =< 90) {
+            high = 6};
+        else (p > 90 && p =< 100) {high = 7};
 
         return gachaDetailMasters[high].ItemId;
     }
